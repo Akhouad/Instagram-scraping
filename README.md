@@ -12,7 +12,7 @@
     echo $ig->followings;
 
     // Followers count is stored in $ig->followers
-    echo "<h2>Posts</h2>";
+    echo "<h2>Followers</h2>";
     echo $ig->followers;
 
     // Profile photo is stored in $ig->photo
