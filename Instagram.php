@@ -30,11 +30,11 @@ class Instagram{
     }
 
     public function posts(){
-        preg_match('/("edges"):(\[.*?\]\},("edge_saved_media"))/i', $this->html, $matches);
-        $matches[0] = 'akad' . $matches[0];
-        $media = str_replace("akad\"edges\":", '', str_replace("},\"edge_saved_media\"", '', $matches[0]));
+        preg_match('/("edge_owner_to_timeline_media"):(\{.*?\]\},("edge_saved_media"))/i', $this->html, $matches);
+        $matches[0] = str_replace(',"edge_saved_media"', '', str_replace('"edge_owner_to_timeline_media":', '', $matches[0]));
+        $media = (array) json_decode($matches[0]);
+        $media = $media['edges'];
         
-        $media = (array) json_decode($media);
         foreach($media as $m){
             $this->posts[] = [
                 'display_url' => $m->node->display_url,
